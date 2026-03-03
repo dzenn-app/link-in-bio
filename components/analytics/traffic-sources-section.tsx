@@ -87,18 +87,18 @@ export function TrafficSourcesSection({ referrers = EMPTY_SOURCES, utmSources = 
       </CardHeader>
       <CardContent className="p-4 pt-2">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2 text-[10px] h-auto p-1 bg-white/5">
-            <TabsTrigger value="referrers" className="py-1 px-2 h-7">
+          <TabsList className="grid w-full grid-cols-4 h-auto p-1 bg-white/5 gap-0.5">
+            <TabsTrigger value="referrers" className="py-1 px-1 h-7 text-[9px] leading-tight">
               Referrers
             </TabsTrigger>
-            <TabsTrigger value="utm-sources" className="py-1 px-2 h-7">
-              UTM Sources
+            <TabsTrigger value="utm-sources" className="py-1 px-1 h-7 text-[9px] leading-tight">
+              UTM Source
             </TabsTrigger>
-            <TabsTrigger value="utm-mediums" className="py-1 px-2 h-7">
-              UTM Mediums
+            <TabsTrigger value="utm-mediums" className="py-1 px-1 h-7 text-[9px] leading-tight">
+              UTM Medium
             </TabsTrigger>
-            <TabsTrigger value="utm-campaigns" className="py-1 px-2 h-7">
-              UTM Campaigns
+            <TabsTrigger value="utm-campaigns" className="py-1 px-1 h-7 text-[9px] leading-tight">
+              Campaign
             </TabsTrigger>
           </TabsList>
 
