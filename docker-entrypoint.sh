@@ -2,7 +2,7 @@
 set -e
 
 echo ">>> Running Prisma db push..."
-pnpm prisma db push --config prisma.config.ts --skip-generate
+./node_modules/.bin/prisma db push --skip-generate
 
 echo ">>> Starting application..."
 exec "$@"
