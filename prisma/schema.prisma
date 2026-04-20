@@ -34,6 +34,7 @@ enum ProfileLayout {
 enum CardTexture {
   base
   glassy
+  brutalist
   dots
   grid
   waves
@@ -242,7 +243,6 @@ model LinkClick {
   @@index([utmCampaign])
   @@map("link_click")
 }
-
 
 
 
