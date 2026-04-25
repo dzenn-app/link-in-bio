@@ -15,8 +15,6 @@ const BACKGROUND_STYLE = {
 
 const NAV_LINK_CLASSNAME = "text-sm font-medium text-foreground/70 hover:text-foreground/70 transition-colors";
 
-const APPLE_BUTTON_BASE_CLASSNAME = "bg-blue-500 hover:bg-blue-600 text-white rounded-full gap-1.5 text-sm font-medium shadow-md";
-
 const APPLE_ICON_PATH =
   "M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.1 268.5-317.1 71 0 130.1 46.7 175.1 46.7 43.1 0 110.8-49.3 192.6-49.3zm-1-192.3c33 0 66 28.5 94.3 56-34.1 38.7-112.1 66.2-143.6 66.2C707.4 270.8 661.5 241.6 661.5 213c0-28.6 30.7-64.4 125.6-64.4z";
 
@@ -40,6 +38,53 @@ function AppleIcon(props: SVGProps<SVGSVGElement>) {
     <svg viewBox="0 0 814 1000" className="w-3.5 h-3.5 fill-current" {...props}>
       <path d={APPLE_ICON_PATH} />
     </svg>
+  );
+}
+
+const DEMO_FEATURES = [
+  {
+    tag: "Profile",
+    title: "Your identity, your way.",
+    mediaSrc: "https://d1uuiykksp6inc.cloudfront.net/demo/v0/final1.mp4",
+  },
+  {
+    tag: "Theme",
+    title: "Make it yours, down to the last pixel.",
+    mediaSrc: "https://d1uuiykksp6inc.cloudfront.net/demo/v0/final2-v1.mp4",
+  },
+  {
+    tag: "Analytics",
+    title: "Know exactly who's clicking, and from where.",
+    mediaSrc: "https://d1uuiykksp6inc.cloudfront.net/demo/v0/demo3.webp",
+  },
+] as const;
+
+function FeatureMedia({ src, alt }: { src: string; alt: string }) {
+  const isVideo = src.endsWith(".mp4") || src.endsWith(".webm");
+
+  return (
+    <div className="w-full relative ring bg-foreground/5 ring-foreground/10 ring-inset rounded-md overflow-hidden transition-opacity duration-500 opacity-100">
+      {isVideo ? (
+        <video
+          src={src}
+          className="w-full h-auto object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto object-cover block"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <div className="absolute inset-0 rounded-md border border-foreground/20 z-10 pointer-events-none" />
+    </div>
   );
 }
 
@@ -73,7 +118,7 @@ export default function MarketingPage() {
                 </div>
               </div>
 
-              <Button size="sm" className={`${APPLE_BUTTON_BASE_CLASSNAME} px-4`}>
+              <Button size="sm" className="px-4">
                 <AppleIcon aria-hidden="true" focusable="false" />
                 Download for Mac
               </Button>
@@ -83,7 +128,7 @@ export default function MarketingPage() {
             <main className="flex-1 flex flex-col items-center">
               <section className="flex flex-col items-center text-center pt-16 pb-8 px-4">
                 {/* Beta badge */}
-                <Badge className="mb-2 bg-purple-100 text-purple-700 hover:bg-purple-100 border-0 px-4 py-1 text-sm font-medium rounded-full">Currently in Beta</Badge>
+                <Badge className="md:mb-2 bg-purple-200 text-black hover:bg-purple-100 border-0 px-4 py-1 text-[10px] font-medium rounded-md">Currently in Beta</Badge>
 
                 {/* Headline */}
                 <h1 className={`text-4xl sm:text-6xl md:text-5xl font-normal text-gray-900 leading-tight mb-2 max-w-2xl ${instrumentSerif.className}`}>
@@ -101,10 +146,7 @@ export default function MarketingPage() {
 
                 {/* CTA Buttons */}
                 <div className="flex items-center gap-3 mb-4">
-                  <Button className={`${APPLE_BUTTON_BASE_CLASSNAME} px-6 py-2.5 gap-2`}>
-                    <AppleIcon aria-hidden="true" focusable="false" />
-                    Try for free
-                  </Button>
+                  <Button className="px-6 py-2.5 gap-2">Try for free</Button>
                 </div>
 
                 <p className="text-sm text-foreground/70">Free to try · iPhone app coming soon</p>
@@ -113,8 +155,8 @@ export default function MarketingPage() {
               {/* App Preview Window */}
               <section className="w-full max-w-4xl mx-auto pb-10">
                 <div className="flex z-80 px-4 sm:px-8 pb-8 pt-[2px] max-h-[450px] overflow-hidden flex-col gap-2 animate-fade-in">
-                  <div className="w-full rounded-xl shrink-0 ring-1 ring-foreground/10 border-foreground/10 shadow-popover translate-x-[-1px] h-fit flex flex-col items-center justify-center relative overflow-hidden">
-                    <img src="https://resurf.so/capture-hero.png" alt="CaptureAI" className="w-full h-full object-cover transition-opacity duration-300" />
+                  <div className="w-full rounded-xl shrink-0  shadow-popover translate-x-[-1px] h-fit flex flex-col items-center justify-center relative overflow-hidden">
+                    <img src="/images/demo1.webp" alt="CaptureAI" className="w-full h-full object-cover transition-opacity duration-300" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 border-0.5 border-y border-primary/50">
@@ -126,30 +168,18 @@ export default function MarketingPage() {
                   ))}
                 </div>
               </section>
+              {/* feature section  */}
               <section className="w-full mx-auto">
                 <div className="grid grid-cols-1">
-                  <div style={{ animationDelay: "0.1s" }} className="flex flex-col gap-6 px-4 sm:px-6 border-0.5 border-primary/50 border-b md:px-10 py-10 animate-blur-fade-slide-in">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-xs font-medium text-foreground/70 tracking-wide">Capture</span>
-                      <h3 className="text-2xl font-medium tracking-tight md:text-2xl text-foreground">Press a shortcut. Capture anything.</h3>
-                      <div className="w-full relative ring bg-foreground/5 ring-foreground/10 ring-inset rounded-md overflow-hidden transition-opacity duration-500 opacity-100">
-                        <video src="https://zyqdiwxgffuy8ymd.public.blob.vercel-storage.com/demos/capture-demo.mp4" className="w-full h-auto object-cover"></video>
-
-                        <div className="absolute inset-0 rounded-md border border-foreground/20 z-10"></div>
+                  {DEMO_FEATURES.map((feature, idx) => (
+                    <div key={feature.tag} style={{ animationDelay: `${0.1 * (idx + 1)}s` }} className="flex flex-col gap-6 px-4 sm:px-6 border-0.5 border-primary/50 border-b md:px-10 py-10 animate-blur-fade-slide-in">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-xs font-medium text-foreground/70 tracking-wide">{feature.tag}</span>
+                        <h3 className="text-2xl font-medium tracking-tight md:text-2xl text-foreground mb-4">{feature.title}</h3>
+                        <FeatureMedia src={feature.mediaSrc} alt={feature.title} />
                       </div>
                     </div>
-                  </div>
-                  <div style={{ animationDelay: "0.1s" }} className="flex flex-col gap-6 px-4 sm:px-6 border-0.5 border-primary/50 border-b md:px-10 py-10 animate-blur-fade-slide-in">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-xs font-medium text-foreground/30 tracking-wide">Capture</span>
-                      <h3 className="text-2xl font-medium tracking-tight md:text-2xl text-foreground">Press a shortcut. Capture anything.</h3>
-                      <div className="w-full relative ring bg-foreground/5 ring-foreground/10 ring-inset rounded-md overflow-hidden transition-opacity duration-500 opacity-100">
-                        <video src="https://zyqdiwxgffuy8ymd.public.blob.vercel-storage.com/demos/capture-demo.mp4" className="w-full h-auto object-cover"></video>
-
-                        <div className="absolute inset-0 rounded-md border border-foreground/20 z-10"></div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </section>
               <section className="w-full">
