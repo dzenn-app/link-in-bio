@@ -77,7 +77,7 @@ export default function MarketingPageClient() {
         {/* CTA Buttons */}
         <div className="flex items-center gap-3 mb-4">
           <Link href={session ? "/editor" : "/login"}>
-            <Button className={`${shadowClass} bg-[#222]  text-sm  text-white px-6 py-2.5 gap-2 transition-all hover:scale-105 active:scale-95 shrink-0 hover:bg-[#222] shadow-none`}>{session ? "Control Panel" : "Try for free"}</Button>
+            <Button className={`${shadowClass} bg-[#222]  text-sm  text-white px-6 py-2.5 gap-2 transition-all hover:scale-105 active:scale-95 shrink-0 hover:bg-[#222] shadow-none`}>{session ? "Lets start" : "Try for free"}</Button>
           </Link>
         </div>
 
@@ -118,7 +118,7 @@ export default function MarketingPageClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 flex flex-col items-center">
           <h1 className={`text-4xl sm:text-6xl md:text-5xl font-normal text-gray-900 leading-tight mb-2 max-w-2xl ${instrumentSerif.className}`}>Create what matters now.</h1>
           <Link href={session ? "/editor" : "/login"}>
-            <Button className={`${shadowClass} bg-[#222] font-bold text-sm  text-white px-6 py-2.5 gap-2 transition-all hover:scale-105 active:scale-95 shrink-0 hover:bg-[#222]`}>{session ? "Control Panel" : "Lets start"}</Button>
+            <Button className={`${shadowClass} bg-[#222] font-bold text-sm  text-white px-6 py-2.5 gap-2 transition-all hover:scale-105 active:scale-95 shrink-0 hover:bg-[#222]`}>{session ? "Lets start" : "Lets start"}</Button>
           </Link>
         </div>
       </section>

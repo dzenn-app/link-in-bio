@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+
 import { ProfileEditor } from "@/components/control-panel/profile-editor";
 import { SocialMediaEditor } from "@/components/control-panel/social-editor";
 import { ProfileLayoutSelector } from "@/components/control-panel/profile-layout-selector";
