@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    // Basic health check - bisa ditambahkan DB check jika diperlukan
     return NextResponse.json(
       {
         status: "ok",
